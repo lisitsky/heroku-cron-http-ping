@@ -24,6 +24,9 @@
       "required": false
     }
   },
+  "addons": [
+    "scheduler"
+  ],
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-go.git"
