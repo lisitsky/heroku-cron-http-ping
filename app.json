@@ -1,0 +1,32 @@
+{
+  "name": "Heroku site pinger",
+  "description": "Simple site pinger to warm up caches connections etc. Could be seamlessly deployed to Heroku in 2 clicks",
+  "keywords": [
+    "heroku",
+    "cron",
+    "http",
+    "cache",
+    "connection",
+    "warmup"
+  ],
+  "repository": "https://github.com/lisitsky/heroku-cron-http-ping",
+  "env": {
+    "PING_URL": {
+      "description": "URL to ping",
+      "required": true
+    },
+    "PING_COUNT": {
+      "description": "Number of pings to send",
+      "required": false
+    },
+    "PING_DELAY": {
+      "description": "Number of milliseconds to wait between pings in a series",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-go.git"
+    }
+  ]
+}

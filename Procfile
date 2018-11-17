@@ -1,0 +1,1 @@
+clock: heroku-cron-http-ping
