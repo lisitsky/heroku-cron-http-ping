@@ -10,8 +10,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-
-func main()  {
+func main() {
 	var config = getConfig()
 
 	var timeout = time.Duration(config.Http.Timeout) * time.Second
@@ -22,19 +21,25 @@ func main()  {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			ping(config.Ping.URL, timeout)
+			ping(config.Ping.URL, timeout, config.Ping.Cookie)
 		}()
 		time.Sleep(time.Duration(config.Ping.Delay) * time.Millisecond)
 	}
 	wg.Wait()
 }
 
-func ping(url string, timeout time.Duration)  {
+func ping(url string, timeout time.Duration, cookie string) {
 	var client = http.Client{
 		Timeout: timeout,
 	}
+	req, err := http.NewRequest("GET", url, nil)
+	if cookie != "" {
+		req.Header.Set("Cookie", cookie)
+	}
+
 	log.Debugf("starting client with url: %s and timeout: %v", url, timeout)
-	resp, err := client.Get(url)
+
+	resp, err := client.Do(req)
 	if err != nil {
 		log.Errorf("ping error: %s", err)
 		return

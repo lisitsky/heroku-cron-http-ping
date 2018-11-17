@@ -2,17 +2,17 @@ package main
 
 type Config struct {
 	Ping struct {
-		URL   string
-		Count int
-		Delay int
+		URL    string
+		Cookie string
+		Count  int
+		Delay  int
 	}
 
-	Http struct{
+	Http struct {
 		Timeout int
 	}
 
-	Log struct{
+	Log struct {
 		Level string
 	}
 }
-
