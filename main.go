@@ -47,7 +47,7 @@ func ping(url string, timeout time.Duration, cookie string) {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	log.Debugf("ping response: %s, body: %s (len=%s)", resp.Status, body, len(body))
+	log.Debugf("ping response: %s, body: %s (len=%v)", resp.Status, body, len(body))
 }
 
 func getConfig() *Config {
