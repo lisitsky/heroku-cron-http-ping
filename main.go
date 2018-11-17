@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"net/http"
 	"strings"
 	"sync"
@@ -45,9 +46,8 @@ func ping(url string, timeout time.Duration, cookie string) {
 		return
 	}
 	defer resp.Body.Close()
-	var body []byte
-	n, err := resp.Body.Read(body)
-	log.Debugf("ping response: %s, body: %s (len=%s)", resp.Status, body, n)
+	body, err := ioutil.ReadAll(resp.Body)
+	log.Debugf("ping response: %s, body: %s (len=%s)", resp.Status, body, len(body))
 }
 
 func getConfig() *Config {
