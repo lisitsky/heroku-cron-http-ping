@@ -1,0 +1,11 @@
+
+ping:
+  url: http://localhost:8080/
+  count: 3
+  delay: 100 # ms
+
+http:
+  timeout: 10 # s
+
+log:
+  level:
