@@ -44,7 +44,10 @@ func ping(url string, timeout time.Duration, cookie string) {
 		log.Errorf("ping error: %s", err)
 		return
 	}
-	log.Debugf("ping response: %s", resp.Status)
+	defer resp.Body.Close()
+	var body []byte
+	n, err := resp.Body.Read(body)
+	log.Debugf("ping response: %s, body: %s (len=%s)", resp.Status, n)
 }
 
 func getConfig() *Config {
